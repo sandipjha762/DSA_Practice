@@ -7,7 +7,8 @@ public class PrintStrairsPath {
         // getStairsPath(n, str);
         int arr[] = new int[n+1];
     //    System.out.println(getStairsPathCount(n));
-       System.out.println(getStairsPathCount(n, arr));
+    //    System.out.println(getStairsPathCount(n, arr));
+       System.out.println(getStairsPathCountTab(n));
 
     }
 
@@ -57,5 +58,31 @@ public class PrintStrairsPath {
         memo[n] = result;
         return result;
     }
+
+    /*
+     * DP Tabulation
+     * 3 Steps to get tabluation form
+     * 1. Storage & meaning
+     * 2. Direction
+     * 3. Travel and solve
+     */
+
+     
+
+     static int getStairsPathCountTab(int n ){
+
+        int dp[] = new int[n+1];
+        dp[0] = 1;
+        for(int i = 1; i <= n; i++){
+            if(i == 1){
+                dp[i] = dp[i-1];
+            }else if( i == 2){
+                dp[i] = dp[i-1] + dp[i-2];
+            }else{
+                dp[i] = dp[i-3] + dp[i-2] + dp[i-1];
+            }
+        }
+        return dp[n];
+     }
 
 }
