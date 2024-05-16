@@ -1,14 +1,21 @@
 package Recursion;
 
+import java.util.ArrayList;
+
 class SubSeque {
+    static ArrayList<String> al = new ArrayList<>();
+
 
     public static void main(String[] args) {
         String str = "abc";
         // subSeq(str, "");
         // permutation(str, "");
-        int arr[] = {10, 3, 5, 3, 13};
+        // int arr[] = {10, 3, 5, 3, 13};
         // System.out.println(recursionPlay(arr, 0));
-        System.out.println(firstOcc(arr, arr.length-1, 3));
+        // System.out.println(firstOcc(arr, arr.length-1, 3));
+        getSubSeq("abc","");
+
+        System.out.println(al);
     }
 
     static void subSeq(String str, String ans){
@@ -66,6 +73,24 @@ class SubSeque {
 
         int res = firstOcc(arr, idx-1, target);
         return res;
+    }
+
+
+    static void getSubSeq(String str, String ans){
+
+        if(str.equals("")){
+            al.add(ans);
+            return;
+        }
+
+       
+        for(int i = 0; i < str.length(); i++){
+            char ch = str.charAt(i);
+            String first = str.substring(0, i);
+            String last = str.substring(i+1);
+            String roq = first+last;
+            getSubSeq(roq, ans+ch);
+        }
     }
 
 
